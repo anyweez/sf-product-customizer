@@ -201,10 +201,10 @@
                     <div>
                         <legend>Choose Typeface:</legend>
 
-                        <input type="radio" name="typeface" id="r1" value="garamond">
+                        <input type="radio" class="step-2" name="typeface" id="r1" value="garamond">
                         <label for="r1"> Garamond</label>
 
-                        <input type="radio" name="typeface" id="r2" value="corsiva">
+                        <input type="radio" class="step-2" name="typeface" id="r2" value="corsiva">
                         <label for="r2"> Monotype Corsiva</label>
 
                         <small>NOTE: Selected typeface will be used for all text customization.</small>
@@ -301,21 +301,20 @@
                     </select>
                 </fieldset>
 
-                <fieldset id="step-3__typeface" class="hidden">
-                    <legend>Choose Typeface:</legend>
-
-                    <input type="radio" name="typeface" id="r3" value="garamond">
-                    <label for="r3"> Garamond</label>
-
-                    <input type="radio" name="typeface" id="r4" value="corsiva">
-                    <label for="r4"> Monotype Corsiva</label>
-
-                    <small>NOTE: Selected typeface will be used for all text customization.</small>
-                </fieldset>
-
                 <fieldset id="step-3__custom-text" class="hidden">
+                    <div>
+                        <legend>Choose Typeface:</legend>
+
+                        <input type="radio" class="step-3" name="typeface" id="r3" value="garamond">
+                        <label for="r3"> Garamond</label>
+
+                        <input type="radio" class="step-3" name="typeface" id="r4" value="corsiva">
+                        <label for="r4"> Monotype Corsiva</label>
+
+                        <small>NOTE: Selected typeface will be used for all text customization.</small>
+                    </div>
                     <label>Enter custom text:</label>
-                    <textarea name="front-text"></textarea>
+                    <textarea id="front-text" name="front-text"></textarea>
                 </fieldset>
 
                 <p id="step-3__stock-text" class="hidden"></p>
@@ -335,21 +334,20 @@
                     <option value="image">Upload Image</option>
                 </select>
 
-                <fieldset id="step-4__typeface" class="hidden">
-                    <legend>Choose Typeface:</legend>
-
-                    <input type="radio" name="typeface" id="r5" value="garamond">
-                    <label for="r5"> Garamond</label>
-
-                    <input type="radio" name="typeface" id="r6" value="corsiva">
-                    <label for="r6"> Monotype Corsiva</label>
-
-                    <small>NOTE: Selected typeface will be used for all text customization.</small>
-                </fieldset>
-
                 <fieldset id="step-4__custom-text" class="hidden">
+                    <div>
+                        <legend>Choose Typeface:</legend>
+
+                        <input type="radio" class="step-4" name="typeface" id="r5" value="garamond">
+                        <label for="r5"> Garamond</label>
+
+                        <input type="radio" class="step-4" name="typeface" id="r6" value="corsiva">
+                        <label for="r6"> Monotype Corsiva</label>
+
+                        <small>NOTE: Selected typeface will be used for all text customization.</small>
+                    </div>
                     <label>Enter custom text:</label>
-                    <textarea name="lid-text"></textarea>
+                    <textarea id="lid-text" name="lid-text"></textarea>
                 </fieldset>
 
                 <fieldset id="step-4__upload-image" class="hidden">

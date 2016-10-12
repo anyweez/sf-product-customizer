@@ -58,18 +58,27 @@ window.addEventListener('load', function () {
     const previousBtn = document.getElementById('previous');
     const addToCartBtn = document.getElementById('add-cart');
     const topText = document.getElementById('top-text');
+    const frontText = document.getElementById('front-text');
+    const lidText = document.getElementById('lid-text');
 
     // controller keeps track of user progress and user interface presentation through the customization proccess
     const controller = function () {
-        let step = 1;
+        let step_i = 0;
 
         return {
+            nextStep() { 
+                if (step_i !== box.steps.length - 1) {
+                    step_i += 1;
+                }
+            },
 
-            nextStep() { step = step === 5 ? step = 5 : step += 1; },
+            previousStep() { 
+                if (step_i !== 0) {
+                    step_i -= 1;   
+                }
+            },
 
-            previousStep() { step = step === 1 ? step = 1 : step -= 1; },
-
-            getStep() { return step; },
+            getStep() { return box.steps[step_i]; },
 
             progressUI() {
                 let state = this.getStep();
@@ -114,14 +123,14 @@ window.addEventListener('load', function () {
         };
     }();
 
-    // event listener for step 1 select dropdown
+    /** event listener for step 1 select dropdown **/
     document.querySelector('#step-1__select').addEventListener('change', e => {
         // Get the selected box and then re-render step 1.
         box = boxes.find(e.target.value);
         step1.render(box);
     });
 
-    // event listener for step 2 select dropdown element and corresponding form elements
+    /** event listener for step 2 select dropdown element and corresponding form elements */
     document.querySelector('#step-2__select').addEventListener('change', e => {
         step2.render(box, { mode: e.target.value });
     });
@@ -129,43 +138,55 @@ window.addEventListener('load', function () {
     document.querySelector('#step-2__select-icon').addEventListener('change', e => {
         step2.render(box, { mode: 'icon', target: e.target.options[e.target.selectedIndex].value });
         // Update the box.
-        box.customize('image', e.target.options[e.target.selectedIndex].value);
+        box.customize('top_image', e.target.options[e.target.selectedIndex].value);
     });
 
-    document.querySelectorAll('input[name=typeface]').forEach(radio => {
-        radio.addEventListener('click', () => box.customize('font', radio.value));
+    document.querySelectorAll('input[name=typeface].step-2').forEach(radio => {
+        radio.addEventListener('click', () => box.customize('top_font', radio.value));
     });
 
-    topText.addEventListener('keyup', () => box.customize('text', topText.value));
+    topText.addEventListener('keyup', () => box.customize('top_text', topText.value));
 
-    // event listener for step 3 select dropdown elements
-    section3.addEventListener('change', function (e) {
-        let icon = step3.frontIconSelection.options[step3.frontIconSelection.selectedIndex].value;
+    /** event listener for step 3 select dropdown elements */
+    document.querySelector('#step-3__select').addEventListener('change', e => {
+        step3.render(box, { mode: e.target.value });
+    });
 
-        if (e.target === step3.frontSelection) {
-            step3.getFrontSelection();
-        }
-        else if (e.target === step3.frontIconSelection) {
-            displayIcon(icon, step3.frontIconDisplay);
-        }
+    document.querySelector('#step-3__select-icon').addEventListener('change', e => {
+        step2.render(box, { mode: 'icon', target: e.target.options[e.target.selectedIndex].value });
+        // Update the box.
+        box.customize('front_image', e.target.options[e.target.selectedIndex].value);
+    });
 
-        e.stopPropagation();
-    }, false);
+    document.querySelectorAll('input[name=typeface].step-3').forEach(radio => {
+        radio.addEventListener('click', () => box.customize('front_font', radio.value));
+    });
 
+    frontText.addEventListener('keyup', () => box.customize('front_text', frontText.value));
 
-    // event listener for step 4 select dropdown elements
-    section4.addEventListener('change', function (e) {
-        let icon = step4.lidIconSelection.options[step4.lidIconSelection.selectedIndex].value;
+    /** event listener for step 4 select dropdown elements */
+    document.querySelector('#step-4__select').addEventListener('change', e => {
+        step4.render(box, { mode: e.target.value });
+    });
 
-        if (e.target === step4.lidSelection) {
-            step4.getLidSelection();
-        }
-        else if (e.target === step4.lidIconSelection) {
-            displayIcon(icon, step4.lidIconDisplay);
-        }
+    document.querySelectorAll('input[name=typeface].step-4').forEach(radio => {
+        radio.addEventListener('click', () => box.customize('lid_font', radio.value));
+    });
 
-        e.stopPropagation();
-    }, false);
+    lidText.addEventListener('keyup', () => box.customize('lid_text', lidText.value));
+
+    // section4.addEventListener('change', function (e) {
+    //     let icon = step4.lidIconSelection.options[step4.lidIconSelection.selectedIndex].value;
+
+    //     if (e.target === step4.lidSelection) {
+    //         step4.getLidSelection();
+    //     }
+    //     else if (e.target === step4.lidIconSelection) {
+    //         displayIcon(icon, step4.lidIconDisplay);
+    //     }
+
+    //     e.stopPropagation();
+    // }, false);
 
 
     // event listener for step 5 select dropdown elements
